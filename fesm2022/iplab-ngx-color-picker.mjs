@@ -1211,13 +1211,16 @@ class ColorPresetComponent {
         ...(ngDevMode ? [{ debugName: "activeColor" }] : /* istanbul ignore next */ []));
         this.color = input.required(/* @ts-ignore */
         ...(ngDevMode ? [{ debugName: "color" }] : /* istanbul ignore next */ []));
-        this.showDepthText = input(false, { ...(ngDevMode ? { debugName: "showDepthText" } : /* istanbul ignore next */ {}), alias: 'show-depth-title', transform: booleanAttribute });
+        this.showDepthText = input(false, { ...(ngDevMode ? { debugName: "showDepthText" } : /* istanbul ignore next */ {}), alias: "show-depth-title",
+            transform: booleanAttribute });
         this.selectionChange = output();
         this.longPress = output();
         this.mouseup = new Subject();
         this.subscriptions = [];
         this.className = computed(() => {
-            return this.activeColor() ? this.color().toRgbaString() === this.activeColor().toRgbaString() : false;
+            return this.activeColor()
+                ? this.color().toRgbaString() === this.activeColor().toRgbaString()
+                : false;
         }, /* @ts-ignore */
         ...(ngDevMode ? [{ debugName: "className" }] : /* istanbul ignore next */ []));
         this.addEventListeners();
@@ -1232,23 +1235,23 @@ class ColorPresetComponent {
         this.removeEventListeners();
     }
     updateBackground() {
-        this.renderer.setStyle(this.elementRef.nativeElement, 'backgroundColor', this.color().toRgbaString());
+        this.renderer.setStyle(this.elementRef.nativeElement, "backgroundColor", this.color().toRgbaString());
     }
     updateTitleAttr() {
-        this.renderer.setAttribute(this.elementRef.nativeElement, 'title', this.getTitle());
+        this.renderer.setAttribute(this.elementRef.nativeElement, "title", this.getTitle());
     }
     getTitle() {
-        const color = this.color() ? this.color().toHexString() : '';
+        const color = this.color() ? this.color().toHexString() : "";
         if (this.showDepthText()) {
-            return (this.pickerConfig?.presetsTitle || '').replace(/\{\s*(.+?)\s*\}/g, (match, firstMatch) => color);
+            return (this.pickerConfig?.presetsTitle || "").replace(/\{\s*(.+?)\s*\}/g, (match, firstMatch) => color);
         }
         return color;
     }
     addEventListeners() {
-        this.subscriptions.push(merge(fromEvent(this.elementRef.nativeElement, 'mouseup'), fromEvent(this.elementRef.nativeElement, 'touchend'))
-            .subscribe(() => this.onTouchEnd()));
-        this.subscriptions.push(merge(fromEvent(this.elementRef.nativeElement, 'mousedown'), fromEvent(this.elementRef.nativeElement, 'touchstart', { passive: true }))
-            .subscribe((e) => this.onTouch(e)));
+        this.subscriptions.push(merge(fromEvent(this.elementRef.nativeElement, "mouseup"), fromEvent(this.elementRef.nativeElement, "touchend")).subscribe(() => this.onTouchEnd()));
+        this.subscriptions.push(merge(fromEvent(this.elementRef.nativeElement, "mousedown"), fromEvent(this.elementRef.nativeElement, "touchstart", {
+            passive: true,
+        })).subscribe((e) => this.onTouch(e)));
     }
     removeEventListeners() {
         this.subscriptions.forEach((subscription) => subscription.unsubscribe());
@@ -1264,12 +1267,13 @@ class ColorPresetComponent {
         this.mouseup.next();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.0.0", ngImport: i0, type: ColorPresetComponent, deps: [{ token: ColorPickerConfig }, { token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "22.0.0", type: ColorPresetComponent, isStandalone: true, selector: "color-preset", inputs: { activeColor: { classPropertyName: "activeColor", publicName: "activeColor", isSignal: true, isRequired: true, transformFunction: null }, color: { classPropertyName: "color", publicName: "color", isSignal: true, isRequired: true, transformFunction: null }, showDepthText: { classPropertyName: "showDepthText", publicName: "show-depth-title", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { selectionChange: "selectionChange", longPress: "longPress" }, host: { properties: { "class.selected": "className()" } }, ngImport: i0, template: ``, isInline: true, styles: [":host{--ngx-color-picker-width: 230px;--ngx-color-picker-surface: #fff;--ngx-color-picker-border: transparent;--ngx-color-picker-border-radius: 2px;--ngx-color-picker-shadow: rgba(0, 0, 0, .3) 0 1px 4px;--ngx-color-picker-divider: #d0d0d0;--ngx-color-picker-control-border: #e4e4e6;--ngx-color-picker-input-label-color: #b4b4b4;--ngx-color-picker-input-color: #272727;--ngx-color-picker-input-secondary-color: #817e81;--ngx-color-picker-input-border-color: rgb(218, 218, 218);--ngx-color-picker-pencil-color: #000;--ngx-color-picker-pointer-shadow: rgba(0, 0, 0, .3) 0 1px 4px}:host,:host ::ng-deep *{padding:0;margin:0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}\n", ":host{display:inline-block;height:12px;width:12px;position:relative;cursor:pointer;transition:all .2s}\n"], changeDetection: i0.ChangeDetectionStrategy.OnPush }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "22.0.0", type: ColorPresetComponent, isStandalone: true, selector: "color-preset", inputs: { activeColor: { classPropertyName: "activeColor", publicName: "activeColor", isSignal: true, isRequired: true, transformFunction: null }, color: { classPropertyName: "color", publicName: "color", isSignal: true, isRequired: true, transformFunction: null }, showDepthText: { classPropertyName: "showDepthText", publicName: "show-depth-title", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { selectionChange: "selectionChange", longPress: "longPress" }, host: { attributes: { "title": "test" }, properties: { "class.selected": "className()" } }, ngImport: i0, template: ``, isInline: true, styles: [":host{--ngx-color-picker-width: 230px;--ngx-color-picker-surface: #fff;--ngx-color-picker-border: transparent;--ngx-color-picker-border-radius: 2px;--ngx-color-picker-shadow: rgba(0, 0, 0, .3) 0 1px 4px;--ngx-color-picker-divider: #d0d0d0;--ngx-color-picker-control-border: #e4e4e6;--ngx-color-picker-input-label-color: #b4b4b4;--ngx-color-picker-input-color: #272727;--ngx-color-picker-input-secondary-color: #817e81;--ngx-color-picker-input-border-color: rgb(218, 218, 218);--ngx-color-picker-pencil-color: #000;--ngx-color-picker-pointer-shadow: rgba(0, 0, 0, .3) 0 1px 4px}:host,:host ::ng-deep *{padding:0;margin:0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}\n", ":host{display:inline-block;height:12px;width:12px;position:relative;cursor:pointer;transition:all .2s}\n"], changeDetection: i0.ChangeDetectionStrategy.OnPush }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.0.0", ngImport: i0, type: ColorPresetComponent, decorators: [{
             type: Component,
             args: [{ selector: `color-preset`, template: ``, changeDetection: ChangeDetectionStrategy.OnPush, standalone: true, host: {
-                        '[class.selected]': 'className()',
+                        "[class.selected]": "className()",
+                        title: "test",
                     }, styles: [":host{--ngx-color-picker-width: 230px;--ngx-color-picker-surface: #fff;--ngx-color-picker-border: transparent;--ngx-color-picker-border-radius: 2px;--ngx-color-picker-shadow: rgba(0, 0, 0, .3) 0 1px 4px;--ngx-color-picker-divider: #d0d0d0;--ngx-color-picker-control-border: #e4e4e6;--ngx-color-picker-input-label-color: #b4b4b4;--ngx-color-picker-input-color: #272727;--ngx-color-picker-input-secondary-color: #817e81;--ngx-color-picker-input-border-color: rgb(218, 218, 218);--ngx-color-picker-pencil-color: #000;--ngx-color-picker-pointer-shadow: rgba(0, 0, 0, .3) 0 1px 4px}:host,:host ::ng-deep *{padding:0;margin:0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}\n", ":host{display:inline-block;height:12px;width:12px;position:relative;cursor:pointer;transition:all .2s}\n"] }]
         }], ctorParameters: () => [{ type: ColorPickerConfig }, { type: i0.ElementRef }, { type: i0.Renderer2 }], propDecorators: { activeColor: [{ type: i0.Input, args: [{ isSignal: true, alias: "activeColor", required: true }] }], color: [{ type: i0.Input, args: [{ isSignal: true, alias: "color", required: true }] }], showDepthText: [{ type: i0.Input, args: [{ isSignal: true, alias: "show-depth-title", required: false }] }], selectionChange: [{ type: i0.Output, args: ["selectionChange"] }], longPress: [{ type: i0.Output, args: ["longPress"] }] } });
 
